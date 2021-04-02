@@ -35,6 +35,8 @@ public class MovePlayer : MonoBehaviour
     public bool onVine;
     private bool IsGrounded = true;
 
+
+
     public bool isGrounded // Проверка на приземлённость
     {
         get
@@ -81,7 +83,10 @@ public class MovePlayer : MonoBehaviour
         }
 
         if (inputX != 0)
+        {
             transform.localScale = new Vector3(inputX > 0 ? defaultScaleX : -defaultScaleX, transform.localScale.y, transform.localScale.y);
+            //1 - right  -1 - left
+        }
 
         if (!canMove)
             return;
@@ -90,7 +95,7 @@ public class MovePlayer : MonoBehaviour
 
         if (!onVine)
         {
-            transform.Translate(new Vector2(inputX * Time.deltaTime * speed * (running ? 1.5f : 1), 0));
+            transform.Translate(new Vector2(inputX * Time.deltaTime * speed * (running ? 1.5f : 1), 0)); //течения надо придумать
 
             if (jump && onTheGround)
                 jumpRemember = jumpRememberTime;
@@ -108,7 +113,9 @@ public class MovePlayer : MonoBehaviour
         else
         {
             if (inputY != 0)
+            {
                 rb.velocity = new Vector2(0, inputY * 5);
+            }
             else
                 rb.velocity = new Vector2(0, 0);
 
