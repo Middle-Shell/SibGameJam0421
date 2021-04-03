@@ -6,11 +6,13 @@ public class Bubble : MonoBehaviour
 {
     private Vector3 scaleChange;
     [SerializeField] GameObject player;
+    
 
     void Start()
     {
         // Вытягиваем игрока по тегу
         player = GameObject.FindGameObjectWithTag("Player");
+        
         InvokeRepeating("Hit", 0f, 1f);
     }
     void Awake()
