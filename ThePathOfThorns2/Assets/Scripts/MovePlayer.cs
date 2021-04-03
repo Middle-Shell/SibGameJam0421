@@ -7,22 +7,23 @@ public class MovePlayer : MonoBehaviour
 {
     Rigidbody2D rb;
     //BoxCollider2D col;
-
     CapsuleCollider2D col;
-
     RaycastHit hit;
 
     AudioSource ac;
     DragonBones.UnityArmatureComponent anim;
 
     [SerializeField] LayerMask lMask;
+    [SerializeField] LayerMask FlowLayer;
 
     [SerializeField] float speed = 5;
+    [SerializeField] float speedMode = 0f;
     [SerializeField] float jumpForce = .6f;
     public float health = 3f;
 
     [SerializeField] Transform punch;
     [SerializeField] float punchRadius;
+
     bool canMove = true;
     float jumpRememberTime = 2f;
     float jumpRemember = 0;
@@ -34,6 +35,8 @@ public class MovePlayer : MonoBehaviour
 
     public bool onVine;
     private bool IsGrounded = true;
+
+
 
 
 
@@ -95,7 +98,7 @@ public class MovePlayer : MonoBehaviour
 
         if (!onVine)
         {
-            transform.Translate(new Vector2(inputX * Time.deltaTime * speed * (running ? 1.5f : 1), 0)); //течения надо придумать
+            transform.Translate(new Vector2(inputX * Time.deltaTime * (speed + (inputX==1? speedMode : -0.5f * speedMode)) * (running ? 1.5f : 1), 0)); //течения надо придумать
 
             if (jump && onTheGround)
                 jumpRemember = jumpRememberTime;
@@ -330,5 +333,21 @@ public class MovePlayer : MonoBehaviour
     {
         transform.position = new Vector2(-13f, -2.66f);
         health = 3f;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (1 << other.gameObject.layer == FlowLayer)//чек на вход в течение
+        {
+            Debug.Log("UP");
+            speedMode = 5f;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (1 << other.gameObject.layer == FlowLayer)//чек на выход из течения
+        {
+            Debug.Log("DOWN");
+            speedMode = 0f;
+        }
     }
 }
