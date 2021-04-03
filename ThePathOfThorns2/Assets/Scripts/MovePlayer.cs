@@ -46,6 +46,7 @@ public class MovePlayer : MonoBehaviour
     public Image img;
     public AnimationCurve curve;
     float invisible;
+    public Camera cam;
 
 
     public bool isGrounded // Проверка на приземлённость
@@ -320,11 +321,7 @@ public class MovePlayer : MonoBehaviour
         if (lava)
         {
             currentCoroutine = StartCoroutine(HitCoroutine(0.01f, 1f, lava));
-            invisible = 0f;
-            invisible += Time.deltaTime * 0.2f;
-            float a = curve.Evaluate(invisible);
-            img.color = new Color(0.97f, 0.12f, 0.12f, a);
-            //StartCoroutine(BloodScreen(lava, 0.5f, 0f));
+            StartCoroutine(BloodScreen(lava, 0.5f, 0f));
         }
         else
         {
@@ -352,26 +349,37 @@ public class MovePlayer : MonoBehaviour
             health -= damage;
         }
     }
-    public IEnumerator BloodScreen(bool lava, float delayTime, float invisible = 1f)
+    public IEnumerator BloodScreen(bool lava, float delayTime, float invisible = 100f)
     {
         yield return new WaitForSeconds(delayTime);
         if (!lava)
         {
             while (invisible > 0f)
             {
-                invisible -= Time.deltaTime* 0.1f;
+                invisible += Time.deltaTime* 0.1f;
                 float a = curve.Evaluate(invisible);
                 img.color = new Color(0.97f, 0.12f, 0.12f, a);
+                if (cam.orthographicSize < 7f)
+                {
+                    cam.orthographicSize += 0.5f;
+                }
+                //cam.orthographicSize = 7.0f;
                 yield return 0;
             }
         }
         else
         {
-            while (invisible < 1f)
+
+            while (invisible < 100f)
             {
-                invisible += Time.deltaTime * 0.2f;
+                invisible -= Time.deltaTime * 0.2f;
                 float a = curve.Evaluate(invisible);
                 img.color = new Color(0.97f, 0.12f, 0.12f, a);
+                if (cam.orthographicSize > 5f)
+                {
+                    cam.orthographicSize -= 0.5f;
+                }
+                //cam.orthographicSize = 5.0f;
                 yield return 0;
             }
         }
@@ -382,7 +390,6 @@ public class MovePlayer : MonoBehaviour
         Debug.Log($"Damaged for {damage} damage");
         health -= damage;
     }
-
     void toSpawn()
     {
         transform.position = new Vector2(-13f, -2.66f);

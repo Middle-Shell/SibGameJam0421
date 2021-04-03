@@ -9,7 +9,6 @@ public class CameraFollow2D : MonoBehaviour
     private Transform player;
     private int lastX;
 
-    Camera cam;
     [SerializeField] float newSize;
     bool sizeIsChanged;
 
@@ -21,14 +20,16 @@ public class CameraFollow2D : MonoBehaviour
     AudioSource audioSrc;
     [SerializeField] Text txt;
 
+    
+
     void Start()
     {
         numCristals = 0;
-        txt.text = "";
-
-        cam = GetComponent<Camera>();
+       // txt.text = "";
+        
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
         FindPlayer(faceLeft);
+        
     }
 
     public void FindPlayer(bool playerFaceLeft)
@@ -62,9 +63,11 @@ public class CameraFollow2D : MonoBehaviour
             y = this.playerTransform.position.y+6,
             z = this.playerTransform.position.z - 10,
         };
+        
+
     }
 
-    private void Update()
+private void Update()
     {
         if (this.playerTransform)
         {

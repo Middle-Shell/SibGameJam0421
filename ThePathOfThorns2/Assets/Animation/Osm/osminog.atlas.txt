@@ -1,0 +1,34 @@
+
+osminog.png
+size: 908,368
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Osm_eay
+  rotate: false
+  xy: 566, 48
+  size: 154, 78
+  orig: 164, 88
+  offset: 0, 0
+  index: -1
+Osm_foot
+  rotate: 270
+  xy: 696, 4
+  size: 283, 210
+  orig: 283, 210
+  offset: 0, 0
+  index: -1
+Osm_head
+  rotate: true
+  xy: 566, 132
+  size: 234, 228
+  orig: 234, 228
+  offset: 0, 0
+  index: -1
+Osm_light
+  rotate: false
+  xy: 2, 5
+  size: 562, 362
+  orig: 562, 362
+  offset: 0, 0
+  index: -1

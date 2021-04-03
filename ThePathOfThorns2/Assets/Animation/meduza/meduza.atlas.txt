@@ -1,0 +1,41 @@
+
+meduza.png
+size: 480,440
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Meduza_head
+  rotate: false
+  xy: 2, 362
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+Meduza_hw_1
+  rotate: false
+  xy: 371, 186
+  size: 104, 189
+  orig: 104, 189
+  offset: 0, 0
+  index: -1
+Meduza_hw_2
+  rotate: false
+  xy: 371, 228
+  size: 76, 122
+  orig: 76, 122
+  offset: 0, 0
+  index: -1
+Meduza_hw_3
+  rotate: false
+  xy: 300, 10
+  size: 129, 242
+  orig: 129, 242
+  offset: 0, 0
+  index: -1
+Meduza_light
+  rotate: false
+  xy: 2, 3
+  size: 367, 435
+  orig: 367, 435
+  offset: 0, 0
+  index: -1

@@ -7,7 +7,7 @@ public class SpringUp : MonoBehaviour
     //private Rigidbody2D rb2D;
     [SerializeField] GameObject bubble;
     private Vector3 scaleChange;
-    [SerializeField] float CoofOxygen = 5f;//количество добавляемого О2
+    [SerializeField] float CoofOxygen = 0.2f;//количество добавляемого О2
 
     void Start()
     {

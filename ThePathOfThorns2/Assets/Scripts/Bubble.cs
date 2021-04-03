@@ -17,13 +17,13 @@ public class Bubble : MonoBehaviour
     }
     void Awake()
     {
-        scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
+        scaleChange = new Vector3(0.01f, 0.01f, 0.01f);
     }
 
     void Hit()
     {
         transform.localScale -= scaleChange;
-        if (transform.localScale.x < 14f)
+        if (transform.localScale.x < 0.8f)
         {
             Debug.Log("HIT Oxygen");
             player.GetComponent<MovePlayer>().health -= 0.2f;
