@@ -1,7 +1,10 @@
 ﻿#define FALLING_VERSION_1
 
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -15,11 +18,15 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] LayerMask lMask;
     [SerializeField] LayerMask FlowLayer;
+    [SerializeField] LayerMask Lava;
+    private Coroutine currentCoroutine;
 
     [SerializeField] float speed = 5;
     [SerializeField] float speedMode = 0f;
     [SerializeField] float jumpForce = .6f;
+
     public float health = 3f;
+    [SerializeField] bool lava = false;
 
     [SerializeField] Transform punch;
     [SerializeField] float punchRadius;
@@ -36,8 +43,9 @@ public class MovePlayer : MonoBehaviour
     public bool onVine;
     private bool IsGrounded = true;
 
-
-
+    public Image img;
+    public AnimationCurve curve;
+    float invisible;
 
 
     public bool isGrounded // Проверка на приземлённость
@@ -180,9 +188,9 @@ public class MovePlayer : MonoBehaviour
             // После прыжка
             if (flyAnim)
             {
-                if (anim.animation.lastAnimationName != "polyot_to_stop")
+                if (anim.animation.lastAnimationName != "die_2_down")
                 {
-                    anim.animation.Play("polyot_to_stop", 1);
+                    anim.animation.Play("die_2_down", 1);
                     if (transform.position.x >= 52f)
                     {
                         AudioSystem("Snow_jump_end");
@@ -206,8 +214,8 @@ public class MovePlayer : MonoBehaviour
             // Перед прыжком
             else if (jump || wJump > 0)
             {
-                if (anim.animation.lastAnimationName != "podprig")
-                    anim.animation.Play("podprig", 1);
+                if (anim.animation.lastAnimationName != "die_2_up")
+                    anim.animation.Play("die_2_up", 1);
                 if (transform.position.x >= 52f)
                 {
                     AudioSystem("Snow_jump_begin");
@@ -225,15 +233,15 @@ public class MovePlayer : MonoBehaviour
             // Стоим на месте
             else if (inputX == 0)
             {
-                if (anim.animation.lastAnimationName != "stoit")
-                    anim.animation.Play("stoit");
+                if (anim.animation.lastAnimationName != "idle")
+                    anim.animation.Play("idle");
             }
             // Идём
             else if (!running)
             {
-                if (IsGrounded && anim.animation.lastAnimationName != "hodba")
+                if (IsGrounded && anim.animation.lastAnimationName != "goes")
                 {
-                    anim.animation.Play("hodba");
+                    anim.animation.Play("goes");
                     if (transform.position.x >= 52f)
                     {
                         AudioSystem("Loli_step_snow");
@@ -265,19 +273,19 @@ public class MovePlayer : MonoBehaviour
             if (flyAnimCoef > 1f)
             {
                 flyAnim = true;
-                if (anim.animation.lastAnimationName == "podprig" && anim.animation.isPlaying)
+                if (anim.animation.lastAnimationName == "die_2_up" && anim.animation.isPlaying)
                 {
                     // Ждём окончания анимации подпрыгивания
                 }
                 else if (rb.velocity.y < 0)
                 {
-                    if (anim.animation.lastAnimationName != "polyot_v_niz")
-                        anim.animation.Play("polyot_v_niz");
+                    if (anim.animation.lastAnimationName != "down")
+                        anim.animation.Play("down");
                 }
                 else if (rb.velocity.y > 0)
                 {
-                    if (anim.animation.lastAnimationName != "polyot_v_verh")
-                        anim.animation.Play("polyot_v_verh");
+                    if (anim.animation.lastAnimationName != "up")
+                        anim.animation.Play("up");
                 }
             }
         }
@@ -309,6 +317,19 @@ public class MovePlayer : MonoBehaviour
         {
             Invoke("toSpawn", .5f);
         }
+        if (lava)
+        {
+            currentCoroutine = StartCoroutine(HitCoroutine(0.01f, 1f, lava));
+            invisible = 0f;
+            invisible += Time.deltaTime * 0.2f;
+            float a = curve.Evaluate(invisible);
+            img.color = new Color(0.97f, 0.12f, 0.12f, a);
+            //StartCoroutine(BloodScreen(lava, 0.5f, 0f));
+        }
+        else
+        {
+            StartCoroutine(BloodScreen(lava, 0.5f));
+        }
     }
 
     void AudioSystem(string nameOfClip)
@@ -323,7 +344,40 @@ public class MovePlayer : MonoBehaviour
         Invoke("destr", .3f);
     }
 
-    public void Hit(int damage)
+    public IEnumerator HitCoroutine(float damage, float delayTime, bool lava)
+    {
+        if (lava)
+        {
+            yield return new WaitForSeconds(delayTime);
+            health -= damage;
+        }
+    }
+    public IEnumerator BloodScreen(bool lava, float delayTime, float invisible = 1f)
+    {
+        yield return new WaitForSeconds(delayTime);
+        if (!lava)
+        {
+            while (invisible > 0f)
+            {
+                invisible -= Time.deltaTime* 0.1f;
+                float a = curve.Evaluate(invisible);
+                img.color = new Color(0.97f, 0.12f, 0.12f, a);
+                yield return 0;
+            }
+        }
+        else
+        {
+            while (invisible < 1f)
+            {
+                invisible += Time.deltaTime * 0.2f;
+                float a = curve.Evaluate(invisible);
+                img.color = new Color(0.97f, 0.12f, 0.12f, a);
+                yield return 0;
+            }
+        }
+        
+    }
+    public void Hit(float damage = 0.01f)
     {
         Debug.Log($"Damaged for {damage} damage");
         health -= damage;
@@ -338,16 +392,23 @@ public class MovePlayer : MonoBehaviour
     {
         if (1 << other.gameObject.layer == FlowLayer)//чек на вход в течение
         {
-            Debug.Log("UP");
             speedMode = 5f;
+        }
+        if (1 << other.gameObject.layer == Lava)//чек на вход в лаву
+        {
+            lava = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (1 << other.gameObject.layer == FlowLayer)//чек на выход из течения
         {
-            Debug.Log("DOWN");
             speedMode = 0f;
+        }
+        if (1 << other.gameObject.layer == Lava)//чек на вход в лаву
+        {
+            StopCoroutine("HitCoroutine");
+            lava = false;
         }
     }
 }
