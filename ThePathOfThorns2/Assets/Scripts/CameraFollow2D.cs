@@ -60,8 +60,8 @@ public class CameraFollow2D : MonoBehaviour
         this.transform.position = new Vector3()
         {
             x = this.playerTransform.position.x,
-            y = this.playerTransform.position.y+6,
-            z = this.playerTransform.position.z - 10,
+            y = this.playerTransform.position.y,
+            z = this.playerTransform.position.z - 500,
         };
         
 
@@ -74,8 +74,8 @@ private void Update()
             Vector3 target = new Vector3()
             {
                 x = this.playerTransform.position.x,
-                y = this.playerTransform.position.y + 3.5f,
-                z = this.playerTransform.position.z - 10,
+                y = this.playerTransform.position.y + 3f,
+                z = this.playerTransform.position.z - 500,
             };
 
             Vector3 pos = Vector3.Lerp(this.transform.position, target, this.movingSpeed * Time.deltaTime);

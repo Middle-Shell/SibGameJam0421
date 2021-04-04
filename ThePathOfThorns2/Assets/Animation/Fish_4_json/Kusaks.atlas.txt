@@ -1,0 +1,76 @@
+
+Kusaks.png
+size: 1024,276
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: false
+  xy: 2, 12
+  size: 273, 261
+  orig: 273, 261
+  offset: 0, 0
+  index: -1
+Teeth_low
+  rotate: 180
+  xy: 962, 3
+  size: 59, 115
+  orig: 59, 128
+  offset: 0, 13
+  index: -1
+Teeth_up
+  rotate: false
+  xy: 831, 18
+  size: 124, 128
+  orig: 124, 128
+  offset: 0, 0
+  index: -1
+chin
+  rotate: true
+  xy: 894, 115
+  size: 159, 105
+  orig: 159, 105
+  offset: 0, 0
+  index: -1
+close_view
+  rotate: false
+  xy: 499, 18
+  size: 239, 256
+  orig: 239, 289
+  offset: 0, 33
+  index: -1
+eay
+  rotate: false
+  xy: 499, 260
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+hw
+  rotate: false
+  xy: 668, 33
+  size: 162, 94
+  orig: 164, 98
+  offset: 0, 4
+  index: -1
+light_2
+  rotate: false
+  xy: 276, 52
+  size: 221, 221
+  orig: 221, 221
+  offset: 0, 0
+  index: -1
+past
+  rotate: true
+  xy: 736, 108
+  size: 166, 155
+  orig: 166, 155
+  offset: 0, 0
+  index: -1
+teeth
+  rotate: 180
+  xy: 440, 24
+  size: 104, 62
+  orig: 104, 62
+  offset: 0, 0
+  index: -1

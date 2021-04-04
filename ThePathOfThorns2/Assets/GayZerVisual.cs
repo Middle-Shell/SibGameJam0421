@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GayZerVisual : MonoBehaviour
 {
     [SerializeField] private GameObject SelectedObject = null;
+
+    public AudioClip audioSource;
+    AudioSource audio;
+
     private IBoolianState stateble = null;
 
 
@@ -15,12 +20,12 @@ public class GayZerVisual : MonoBehaviour
     private void Start()
     {
         stateble = SelectedObject.GetComponent<IBoolianState>();
-
         //
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        //audio = GetComponent<AudioSource>();
         //
     }
-    
+
 
     void Update()
     {
@@ -30,6 +35,8 @@ public class GayZerVisual : MonoBehaviour
             {
                 //
                 mySpriteRenderer.enabled = true;
+                //audio.PlayOneShot(audioSource, 0.7F);
+                
                 //
             }
             else

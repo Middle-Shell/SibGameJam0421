@@ -1,10 +1,11 @@
-﻿#define FALLING_VERSION_1
+﻿
 
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MovePlayer : MonoBehaviour, IInteractable
 {
@@ -176,11 +177,11 @@ public class MovePlayer : MonoBehaviour, IInteractable
                     anim.animation.Play("die_2_down", 1);
                     if (transform.position.x >= 52f)
                     {
-                        AudioSystem("Snow_jump_end");
+                        AudioSystem("jump_down");
                     }
                     else
                     {
-                        AudioSystem("Jump_end");
+                        AudioSystem("jump_down");
                     }
 
                 }
@@ -242,6 +243,7 @@ public class MovePlayer : MonoBehaviour, IInteractable
                 if (isGroundedvar && anim.animation.lastAnimationName != "beg")
                     anim.animation.Play("beg");
             }
+            
         }
 
         // В воздухе
@@ -291,7 +293,8 @@ public class MovePlayer : MonoBehaviour, IInteractable
         UpdateAnimation(inputX, inputY, running, debugCheat, onTheGround, attack, jump);
         if (health <= 0)
         {
-            Invoke("toSpawn", .5f);
+            //anim.animation.Play("die");
+            Invoke("toSpawn", 1f);
         }
         if (lava)
         {
@@ -300,8 +303,9 @@ public class MovePlayer : MonoBehaviour, IInteractable
         }
         else
         {
-            StartCoroutine(BloodScreen(lava, 0.5f));
+            //StartCoroutine(BloodScreen(lava, 0.5f));
         }
+
     }
 
     void AudioSystem(string nameOfClip)
@@ -367,8 +371,7 @@ public class MovePlayer : MonoBehaviour, IInteractable
     }
     void toSpawn()
     {
-        transform.position = new Vector2(-13f, -2.66f);
-        health = 3f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

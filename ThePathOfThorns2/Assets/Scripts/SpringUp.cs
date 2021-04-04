@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SpringUp : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class SpringUp : MonoBehaviour, IInteractable
 {
+    public AudioClip impact; // наш звук
+    AudioSource audio;
     //private Rigidbody2D rb2D;
     [SerializeField] GameObject bubble;
     private Vector3 scaleChange;
@@ -13,16 +15,21 @@ public class SpringUp : MonoBehaviour
     {
         //rb2D = this.GetComponent<Rigidbody2D>();
         bubble = GameObject.FindGameObjectWithTag("Bubble");
+        audio = GetComponent<AudioSource>();
+
+        // Воспроизводим
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             scaleChange = new Vector3(CoofOxygen, CoofOxygen, CoofOxygen);
             bubble.transform.localScale += scaleChange;
             Debug.Log("UpOxygen");
-            Destroy(gameObject);
+            audio.PlayOneShot(impact, 0.7F);
+            Destroy(gameObject, 0.3f);
         }
     }
     void FixedUpdate()
