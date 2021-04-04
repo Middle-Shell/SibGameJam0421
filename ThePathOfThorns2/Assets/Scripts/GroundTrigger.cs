@@ -14,14 +14,14 @@ public class GroundTrigger : MonoBehaviour
     {
         if(1 << other.gameObject.layer == groundLayers)
         {
-            player.isGrounded = true;
+            //player.isGrounded = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (1 << other.gameObject.layer == groundLayers)
         {
-            player.isGrounded = false;
+            //player.isGrounded = false;
         }
     }
 }

@@ -6,11 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
-public class MovePlayer : MonoBehaviour
+public class MovePlayer : MonoBehaviour, IInteractable
 {
     Rigidbody2D rb;
-    //BoxCollider2D col;
-    CapsuleCollider2D col;
     RaycastHit hit;
 
     AudioSource ac;
@@ -41,37 +39,21 @@ public class MovePlayer : MonoBehaviour
     //float rememberedInputYForVine;
 
     public bool onVine;
-    private bool IsGrounded = true;
+
+    public Collider2D myCollider = null;
+    public float floorDistance = 0.1f;
+    public bool isGroundedvar => myCollider != null ? Physics2D.Raycast(myCollider.bounds.min, Vector2.down, floorDistance) : false;
 
     public Image img;
     public AnimationCurve curve;
     float invisible;
     public Camera cam;
 
-
-    public bool isGrounded // Проверка на приземлённость
-    {
-        get
-        {
-            return IsGrounded;
-        }
-        set
-        {
-            IsGrounded = value;
-        }//Это же жесть, я уже начал сомневаться во всём в своих навыках, в своих знаниях, в цивилизации, а оказывается я просто не нажал кнопку istrigger, 3-4 часа, куча прочитанных форумов и штук 6 способов написать этот код АААААААААААААААААААААААААААА
-        /*Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10);
-        //Physics2D.CapsuleCast(col.bounds.center, col.bounds.size, Vertical, 0.1f, Vector2.down);// .1f);
-        RaycastHit2D raycast = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, lMask);
-        return raycast.collider != null;*/
-
-    }
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //col = GetComponent<BoxCollider2D>();
 
-        col = GetComponent<CapsuleCollider2D>();
+        myCollider = GetComponent<Collider2D>();
 
         ac = GetComponent<AudioSource>();
         anim = GetComponent<DragonBones.UnityArmatureComponent>();
@@ -240,7 +222,7 @@ public class MovePlayer : MonoBehaviour
             // Идём
             else if (!running)
             {
-                if (IsGrounded && anim.animation.lastAnimationName != "goes")
+                if (isGroundedvar && anim.animation.lastAnimationName != "goes")
                 {
                     anim.animation.Play("goes");
                     if (transform.position.x >= 52f)
@@ -257,7 +239,7 @@ public class MovePlayer : MonoBehaviour
             // Бежим
             else
             {
-                if (IsGrounded && anim.animation.lastAnimationName != "beg")
+                if (isGroundedvar && anim.animation.lastAnimationName != "beg")
                     anim.animation.Play("beg");
             }
         }
@@ -299,21 +281,14 @@ public class MovePlayer : MonoBehaviour
 
         bool running = Input.GetKey(KeyCode.LeftShift);
         bool debugCheat = Input.GetKey(KeyCode.LeftControl);
-        bool onTheGround = IsGrounded;
+        bool onTheGround = isGroundedvar;
         bool attack = Input.GetKeyDown(KeyCode.Mouse0);
         bool jump = Input.GetButtonDown("Jump");
         RaycastHit2D hit;
 
+
         UpdateMoving(inputX, inputY, running, debugCheat, onTheGround, attack, jump);
         UpdateAnimation(inputX, inputY, running, debugCheat, onTheGround, attack, jump);
-
-        /*if(Physics2D.Raycast(transform.position, Vector2.down, hit, 2))
-        {
-            if(hit.transform.tag == "grass")
-            {
-
-            }
-        }*/
         if (health <= 0)
         {
             Invoke("toSpawn", .5f);

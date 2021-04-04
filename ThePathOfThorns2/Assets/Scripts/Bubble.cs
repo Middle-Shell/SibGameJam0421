@@ -23,10 +23,17 @@ public class Bubble : MonoBehaviour
     void Hit()
     {
         transform.localScale -= scaleChange;
-        if (transform.localScale.x < 0.8f)
+        if (transform.localScale.x < 0.5f)
         {
-            Debug.Log("HIT Oxygen");
             player.GetComponent<MovePlayer>().health -= 0.2f;
         }
-}
+    }
+    void Hill()
+    {
+        
+        if (transform.localScale.x < 1.25f)
+        {
+            transform.localScale += scaleChange;
+        }
+    }
 }
