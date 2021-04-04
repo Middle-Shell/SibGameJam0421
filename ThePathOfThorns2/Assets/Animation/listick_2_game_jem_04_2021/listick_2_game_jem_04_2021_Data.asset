@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a64e5b0e436d4bed9780211ae245f7b, type: 3}
+  m_Name: listick_2_game_jem_04_2021_Data
+  m_EditorClassIdentifier: 
+  dataName: listick_2_game_jem_04_2021
+  dragonBonesJSON: {fileID: 4900000, guid: 01a9460d666af79478d88e88c55b85a8, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: 0c1c485cbc7ad9345854a59abde68cfc, type: 3}
+    texture: {fileID: 2800000, guid: d82f7c72340ce2d4cb1d6da8c3fcf984, type: 3}
+    material: {fileID: 2100000, guid: 250b68e667b888e41abc847abfef98ed, type: 2}
+    uiMaterial: {fileID: 0}

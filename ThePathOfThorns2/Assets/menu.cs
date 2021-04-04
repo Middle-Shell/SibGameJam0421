@@ -45,7 +45,7 @@ public class menu : MonoBehaviour
     }
     public void GoToMain()
     {
-        SceneManager.LoadScene("lvl1"); //Переход на сцену с названием Menu
+        SceneManager.LoadScene("lvl0"); //Переход на сцену с названием Menu
     }
     public void QuitGame()
     {

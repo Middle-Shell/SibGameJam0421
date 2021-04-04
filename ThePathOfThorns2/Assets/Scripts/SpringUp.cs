@@ -17,7 +17,6 @@ public class SpringUp : MonoBehaviour, IInteractable
         bubble = GameObject.FindGameObjectWithTag("Bubble");
         audio = GetComponent<AudioSource>();
 
-        // Воспроизводим
         
     }
 
