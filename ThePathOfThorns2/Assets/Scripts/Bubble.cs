@@ -25,7 +25,7 @@ public class Bubble : MonoBehaviour
         transform.localScale -= scaleChange;
         if (transform.localScale.x < 0.5f)
         {
-            player.GetComponent<MovePlayer>().health -= 0.2f;
+            player.GetComponent<MovePlayer>().health -= 0.05f;
         }
     }
     void Hill()

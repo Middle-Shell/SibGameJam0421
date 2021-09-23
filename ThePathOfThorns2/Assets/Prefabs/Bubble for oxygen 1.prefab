@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2271416177225908435
+--- !u!1 &5546434254128745442
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2271416177225908439}
-  - component: {fileID: 2271416177225908432}
-  - component: {fileID: 2271416177225908433}
-  - component: {fileID: 2271416177225908434}
-  - component: {fileID: 4940994686869144013}
+  - component: {fileID: 1632757524147328079}
+  - component: {fileID: 4231575963719477042}
+  - component: {fileID: 2174663446451440839}
+  - component: {fileID: 77475024886736184}
+  - component: {fileID: 1742275198731787321}
+  - component: {fileID: 5546434254128745443}
   m_Layer: 0
   m_Name: Bubble for oxygen 1
   m_TagString: Untagged
@@ -20,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2271416177225908439
+--- !u!224 &1632757524147328079
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271416177225908435}
+  m_GameObject: {fileID: 5546434254128745442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3.0773437}
   m_LocalScale: {x: 0.5004659, y: 0.5004659, z: 0.5004659}
@@ -36,16 +37,16 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.04, y: -2.8}
+  m_AnchoredPosition: {x: 103.65, y: -5.31}
   m_SizeDelta: {x: 0.16625285, y: 0.15177622}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!212 &2271416177225908432
+--- !u!212 &4231575963719477042
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271416177225908435}
+  m_GameObject: {fileID: 5546434254128745442}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -89,13 +90,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2271416177225908433
+--- !u!114 &2174663446451440839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271416177225908435}
+  m_GameObject: {fileID: 5546434254128745442}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9d3d88c36c9d2e41b23fa9471adce82, type: 3}
@@ -104,13 +105,13 @@ MonoBehaviour:
   impact: {fileID: 8300000, guid: a7e91761da91a094fb8985a65d31edbc, type: 3}
   bubble: {fileID: 0}
   CoofOxygen: 0.2
---- !u!58 &2271416177225908434
+--- !u!58 &77475024886736184
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271416177225908435}
+  m_GameObject: {fileID: 5546434254128745442}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -120,13 +121,13 @@ CircleCollider2D:
   m_Offset: {x: -0.08696154, y: -0.017395856}
   serializedVersion: 2
   m_Radius: 1.456961
---- !u!82 &4940994686869144013
+--- !u!82 &1742275198731787321
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2271416177225908435}
+  m_GameObject: {fileID: 5546434254128745442}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -140,7 +141,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 20
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -216,3 +217,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!111 &5546434254128745443
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5546434254128745442}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: f89b004af81799a44b695099f60546d5, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: f89b004af81799a44b695099f60546d5, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

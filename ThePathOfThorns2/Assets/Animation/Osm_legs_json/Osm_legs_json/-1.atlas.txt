@@ -1,0 +1,13 @@
+
+-1.png
+size: 436,284
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Legs
+  rotate: false
+  xy: 2, 3
+  size: 431, 276
+  orig: 431, 276
+  offset: 0, 0
+  index: -1

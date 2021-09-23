@@ -24,12 +24,17 @@ public class CameraFollow2D : MonoBehaviour
 
     void Start()
     {
+        if (GameObject.FindGameObjectsWithTag("MainCamera").Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
         numCristals = 0;
        // txt.text = "";
         
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
         FindPlayer(faceLeft);
-        
+        DontDestroyOnLoad(transform.gameObject);
+
     }
 
     public void FindPlayer(bool playerFaceLeft)
@@ -71,10 +76,15 @@ private void Update()
     {
         if (this.playerTransform)
         {
+            float coof;
+            if (this.transform.position.y < -100)
+                coof = 1f;
+            else
+                coof = 3f;
             Vector3 target = new Vector3()
             {
-                x = this.playerTransform.position.x,
-                y = this.playerTransform.position.y + 3f,
+                x = this.playerTransform.position.x + 4f,
+                y = this.playerTransform.position.y + coof,
                 z = this.playerTransform.position.z - 500,
             };
 

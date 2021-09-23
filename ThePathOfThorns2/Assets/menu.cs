@@ -18,7 +18,6 @@ public class menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        resolutionDropdown.ClearOptions(); //Удаление старых пунктов
         resolutions = Screen.resolutions; //Получение доступных разрешений
         List<string> options = new List<string>(); //Создание списка со строковыми значениями
 
@@ -37,15 +36,11 @@ public class menu : MonoBehaviour
         resolutionDropdown.value = currResolutionIndex; //Выделение пункта с текущим разрешением
         resolutionDropdown.RefreshShownValue(); //Обновление отображаемого значения
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void GoToMain()
     {
-        SceneManager.LoadScene("lvl0"); //Переход на сцену с названием Menu
+        Debug.Log("Start");
+        Destroy(GameObject.FindGameObjectWithTag("MainCamera"));
+        SceneManager.LoadScene("new_lvl1"); //Переход на сцену
     }
     public void QuitGame()
     {

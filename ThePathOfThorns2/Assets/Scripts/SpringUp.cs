@@ -27,8 +27,8 @@ public class SpringUp : MonoBehaviour, IInteractable
             scaleChange = new Vector3(CoofOxygen, CoofOxygen, CoofOxygen);
             bubble.transform.localScale += scaleChange;
             Debug.Log("UpOxygen");
-            audio.PlayOneShot(impact, 0.7F);
-            Destroy(gameObject, 0.3f);
+            audio.PlayOneShot(impact, 1F);
+            Destroy(gameObject, 0.5f);
         }
     }
     void FixedUpdate()

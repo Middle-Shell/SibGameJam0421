@@ -1,0 +1,20 @@
+
+riba2.png
+size: 148,364
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Fish_ 2
+  rotate: false
+  xy: 2, 3
+  size: 143, 358
+  orig: 143, 358
+  offset: 0, 0
+  index: -1
+Fish_2_eay
+  rotate: false
+  xy: 2, 341
+  size: 15, 19
+  orig: 15, 19
+  offset: 0, 0
+  index: -1

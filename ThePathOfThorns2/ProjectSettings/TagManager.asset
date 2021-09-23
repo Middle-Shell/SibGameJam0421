@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Bubble
   - Camera
+  - SavePoint
+  - Bonus
+  - Dead
+  - Killer
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -20,13 +25,13 @@ TagManager:
   - FlowUp
   - FlowDown
   - Lava
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Saver
+  - DarkBackground
+  - Dead
+  - Enter
+  - Exit
+  - Win
+  - Start
   - 
   - 
   - 

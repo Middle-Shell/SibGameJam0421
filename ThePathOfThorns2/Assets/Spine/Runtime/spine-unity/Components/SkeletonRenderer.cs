@@ -280,6 +280,7 @@ namespace Spine.Unity {
 
 		public virtual void Awake () {
 			Initialize(false);
+			updateMode = updateWhenInvisible;
 		}
 
 	#if UNITY_EDITOR && CONFIGURABLE_ENTER_PLAY_MODE
@@ -502,7 +503,10 @@ namespace Spine.Unity {
 		}
 
 		public void OnBecameVisible () {
+			UpdateMode previousUpdateMode = updateMode;
 			updateMode = UpdateMode.FullUpdate;
+			if (previousUpdateMode != UpdateMode.FullUpdate)
+				LateUpdate(); // OnBecameVisible is called after LateUpdate()
 		}
 
 		public void OnBecameInvisible () {
@@ -690,6 +694,9 @@ namespace Spine.Unity {
 			}
 
 			for (int i = 0; i < meshRenderer.sharedMaterials.Length; ++i) {
+				if (!meshRenderer.sharedMaterials[i])
+					continue;
+
 				if (!hasPerRendererBlock) meshRenderer.GetPropertyBlock(reusedPropertyBlock, i);
 				// Note: this parameter shall not exist at any shader, then Unity will create separate
 				// material instances (not in terms of memory cost or leakage).

@@ -11,6 +11,7 @@ public class GayZerVisual : MonoBehaviour
     AudioSource audio;
 
     private IBoolianState stateble = null;
+    private bool sound = false;
 
 
     //
@@ -22,7 +23,7 @@ public class GayZerVisual : MonoBehaviour
         stateble = SelectedObject.GetComponent<IBoolianState>();
         //
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        //audio = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();
         //
     }
 
@@ -35,13 +36,17 @@ public class GayZerVisual : MonoBehaviour
             {
                 //
                 mySpriteRenderer.enabled = true;
-                //audio.PlayOneShot(audioSource, 0.7F);
+                if (!sound)
+                {
+                    audio.PlayOneShot(audioSource, 0.7F);
+                    sound = true;
+                }
                 
                 //
             }
             else
             {
-                //
+                sound = false;
                 mySpriteRenderer.enabled = false;
                 //
             }
